@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class StatsServiceTest {
 
     @Test
-
     void calculateSum() {
         StatsService service = new StatsService();
 
@@ -20,17 +19,19 @@ class StatsServiceTest {
         assertEquals(expected, actual);
 
     }
+
     @Test
     void averageAmountSum() {
         StatsService service = new StatsService();
 
         long[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int sum = 180;
-        int months = 12;
-        int averageAmount = sum / months;
-        System.out.println(averageAmount);
+        long expected = 15;
+        long actual = service.findAverageAmountSum(sales);
+        assertEquals(expected, actual);
+
 
     }
+
     @Test
     void MonthMaxSale() {
         StatsService service = new StatsService();
@@ -40,11 +41,11 @@ class StatsServiceTest {
 
         long actual = service.findMonthMaxSale(sales);
 
-        assertEquals(expected,actual);
-
+        assertEquals(expected, actual);
 
 
     }
+
     @Test
     void MonthMinSale() {
         StatsService service = new StatsService();
@@ -54,7 +55,7 @@ class StatsServiceTest {
 
         long actual = service.findMonthMinSale(sales);
 
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
 
@@ -67,8 +68,20 @@ class StatsServiceTest {
 
         long actual = service.monthLessAverageAmount(sales);
 
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
+    @Test
+    void shouldMoreThenAverage() {
+        StatsService service = new StatsService();
+        long[] sales = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
 
+        long expected = 5;
+
+        long actual = service.monthMoreAverageAmount(sales);
+
+        assertEquals(expected, actual);
+
+
+    }
 }

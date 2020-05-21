@@ -6,40 +6,46 @@ public class StatsService {
 
         for (long sale : sales) {
             sum += sale;
-
         }
 
         return sum;
     }
 
-        public long findMonthMaxSale(long[] sales) {
+    public long findAverageAmountSum(long[] sales) {
+        long sum = calculateSum(sales);
+        return sum / sales.length;
 
-            long MaxSale = findMaxSale(sales);
-            int numberOfMonth = 0;
-            int numberOfMonthMaxSale = 0;
+    }
 
-            for (long sale : sales) {
-                numberOfMonth ++;
-                if (sale == MaxSale) {
-                    numberOfMonthMaxSale = numberOfMonth;
 
-                }
+    public long findMonthMaxSale(long[] sales) {
+
+        long MaxSale = findMaxSale(sales);
+        int numberOfMonth = 0;
+        int numberOfMonthMaxSale = 0;
+
+        for (long sale : sales) {
+            numberOfMonth++;
+            if (sale == MaxSale) {
+                numberOfMonthMaxSale = numberOfMonth;
 
             }
-            return numberOfMonthMaxSale;
 
         }
+        return numberOfMonthMaxSale;
 
-        public long findMaxSale(long[] sales) {
-            long MaxSale = sales[0];
+    }
 
-            for (long sale : sales) {
-                if(sale>MaxSale) {
-                    MaxSale = sale;
-                }
+    public long findMaxSale(long[] sales) {
+        long MaxSale = sales[0];
+
+        for (long sale : sales) {
+            if (sale > MaxSale) {
+                MaxSale = sale;
             }
-            return MaxSale;
         }
+        return MaxSale;
+    }
 
     public long findMonthMinSale(long[] sales) {
 
@@ -48,7 +54,7 @@ public class StatsService {
         int numberOfMonthMinSale = 0;
 
         for (long sale : sales) {
-            numberOfMonth ++;
+            numberOfMonth++;
             if (sale == MinSale) {
                 numberOfMonthMinSale = numberOfMonth;
 
@@ -63,7 +69,7 @@ public class StatsService {
         long MinSale = sales[0];
 
         for (long sale : sales) {
-            if(sale<MinSale) {
+            if (sale < MinSale) {
                 MinSale = sale;
             }
         }
@@ -71,12 +77,12 @@ public class StatsService {
     }
 
     public long monthLessAverageAmount(long[] sales) {
-        long average = average(sales);
+        long average = findAverageAmountSum(sales);
         int amount = 0;
 
-        for (long sale: sales) {
+        for (long sale : sales) {
             if (sale < average) {
-                amount ++;
+                amount++;
 
             }
 
@@ -84,8 +90,24 @@ public class StatsService {
         return amount;
     }
 
+    public long monthMoreAverageAmount(long[] sales) {
+        long average = findAverageAmountSum(sales);
+        int amount = 0;
 
+        for (long sale : sales) {
+            if (sale > average) {
+                amount++;
 
+            }
+
+        }
+        return amount;
     }
+}
+
+
+
+
+
 
 
